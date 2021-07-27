@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
   catch (err) {
     res.status(500).json(err);
   }
+});
 
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value, including its associated Products
@@ -24,21 +25,42 @@ router.get('/:id', async (req, res) => {
   catch (err) {
     res.status(500).json(err);
   }
-}
+});
 
 router.post('/', async (req, res) => {
   // create a new category
+  try{
   let newCategory = await Category.create(req.body);
+  res.status(200).json(newCategory);
+  } 
+  catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
-  let updatedCategory = await Category.update(req.body);
+  try {
+  let updatedCategory = await Category.update(req.body, 
+    {where: {id: req.params.id}} );
+  res.status(200).json(updatedCategory);
+  }
+  catch (err) {
+    res.status(500).json(err);
+  }
 });
+
 
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
-  let deletedCategory = await Category.destroy(req.body);
+  try {
+    let deletedCategory = await Category.destroy(req.body, 
+      {where: {id: req.params.id}} );
+    res.status(200).json(deletedCategory);
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 module.exports = router;
