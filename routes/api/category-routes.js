@@ -5,27 +5,27 @@ const { Category, Product } = require('../../models');
 
 router.get('/', async (req, res) => {
   // find all categories, including its associated Products
-  let allCategories = await Category.findAll({/* include here */});
+  let allCategories = await Category.findAll(req.body, {/* include here */});
 });
 
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value, including its associated Products
-  let category = await Category.findByPk({/* include here */});
+  let category = await Category.findByPk(req.body. {/* include here */});
 });
 
 router.post('/', async (req, res) => {
   // create a new category
-  //TODO: use the Sequelize Model create method with await
+  let newCategory = await Category.create(req.body);
 });
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
-  //TODO: use a Sequelize Model put/update method with await
+  let updatedCategory = await Category.update(req.body);
 });
 
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
-  //TODO: use a Sequelize Model delete/destroy method with await
+  let deletedCategory = await Category.destroy(req.body);
 });
 
 module.exports = router;
