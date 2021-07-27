@@ -22,6 +22,7 @@ Product.init(
     price: {
       type: DataTypes.DECIMAL,
       allowNull: false,
+      //must validate price is decimal
       validate: {
         isDecimal: true,
       }
@@ -31,14 +32,14 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 10,
+      //must validate stock is integer
       validate: {
         isInteger: true,
       },
     },
   },
   {
-    sequelize,
-    timestamps: false,
+    sequelize, timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'product',

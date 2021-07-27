@@ -15,10 +15,14 @@ ProductTag.init(
     product_id: {
       type: DataTypes.STRING,
       //TODO: Reference Product model's id
+      // what type of sequelize relationship?
+
     }
     tag_id: {
       type: DataTypes.INTEGER,
       //TODO: Reference Tag model's id
+      // what type of sequelize relationship?
+
     }
   },
   {
