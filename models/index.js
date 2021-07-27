@@ -10,10 +10,13 @@ Product.belongsTo(Category, {
 });
 
 // Categories have many Products
+Category.hasMany(Product, {/* use category_id */});
 
 // Products belongToMany Tags (through ProductTag)
+Product.belongsToMany(Tag, {/*  use product_id */});
 
 // Tags belongToMany Products (through ProductTag)
+Tag.belongsToMany(Product, {/*  use tag_id */});
 
 module.exports = {
   Product,
