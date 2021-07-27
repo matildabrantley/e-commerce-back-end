@@ -5,12 +5,12 @@ const { Category, Product } = require('../../models');
 
 router.get('/', async (req, res) => {
   // find all categories, including its associated Products
-  //TODO: use a Sequelize Model's find method (with await)
+  let allCategories = await Category.findAll({/* include here */});
 });
 
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value, including its associated Products
-  //TODO: use one of Sequelize Model's find method (with await)
+  let category = await Category.findByPk({/* include here */});
 });
 
 router.post('/', async (req, res) => {
