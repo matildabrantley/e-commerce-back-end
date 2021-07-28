@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   // find all products, including their associated Category and Tag data
   try {
     let alProducts = await Product.findAll(req.params.id, 
-      {include: [{model: Category}]} );
+      {include: [{model: Category}, { model: Tag, through: ProductTag }]} );
       res.status(200).json(allProducts);
     } 
     catch (err) {
@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   // find a single product by its `id`, including its associated Category and Tag data
   try {
     let product = await Product.findByPk(req.params.id, 
-      {include: [{model: Category}]} );
+      {include: [{model: Category}, { model: Tag, through: ProductTag }]} );
       res.status(200).json(product);
     }
     catch (err) {
