@@ -26,7 +26,6 @@ Product.init(
       validate: {
         isDecimal: true,
       }
-      autoIncrement: true,
     },
     stock: {
       type: DataTypes.INTEGER,
@@ -34,7 +33,7 @@ Product.init(
       defaultValue: 10,
       //must validate stock is integer
       validate: {
-        isInteger: true,
+        isNumeric: true,
       },
     },
   },
