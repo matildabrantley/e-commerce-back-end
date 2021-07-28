@@ -5,27 +5,60 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', async (req, res) => {
   // find all tags, including its associated Product data
-  //TODO: use a Sequelize Model's find method (with await)
+  try {
+    let tag = await Tag.findByPk(req.params.id, 
+      {include: [{model: Product}]} );
+      res.status(200).json(tag);
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`, including its associated Product data
-  //TODO: use one of Sequelize Model's find method (with await)
+  try {
+    let tag = await Tag.findByPk(req.params.id, 
+      {include: [{model: Product}]} );
+      res.status(200).json(tag);
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 router.post('/', async (req, res) => {
   // create a new tag
-  //TODO: use the Sequelize Model create method with await
+  try{
+    let newTag = await Tag.create(req.body);
+    res.status(200).json(newTag);
+    } 
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
-  //TODO: use a Sequelize Model put/update method with await
+  try {
+    let updatedTag = await Tag.update(req.body, 
+      {where: {id: req.params.id}} );
+    res.status(200).json(updatedTag);
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
-  //TODO: use a Sequelize Model delete/destroy method with await
+  try {
+    let deletedTag = await Tag.destroy( {where: {id: req.params.id}} );
+    res.status(200).json(deletedTag);
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 module.exports = router;
